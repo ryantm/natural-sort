@@ -1,0 +1,41 @@
+-- This file has been generated from package.yaml by hpack version 0.17.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           natural-sort
+version:        0.1.0.0
+category:       Web
+homepage:       https://github.com/ryantm/natural-sort#readme
+author:         Ryan Mulligan
+maintainer:     ryan@ryantm.com
+copyright:      2017 Ryan Mulligan
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
+
+extra-source-files:
+    README.md
+
+executable natural-sort
+  main-is: Main.hs
+  hs-source-dirs:
+      src
+  build-depends:
+      base >= 4.7 && < 5
+    , QuickCheck
+    , tasty
+  default-language: Haskell2010
+
+test-suite test
+  type: exitcode-stdio-1.0
+  main-is: Main.hs
+  hs-source-dirs:
+      test
+  build-depends:
+      base >= 4.7 && < 5
+    , QuickCheck
+    , tasty
+  other-modules:
+      Test
+  default-language: Haskell2010
