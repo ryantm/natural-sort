@@ -2,6 +2,7 @@
 
 import Test.Tasty
 import Test.Tasty.HUnit
+import Data.List
 
 import NaturalSort
 
@@ -20,12 +21,16 @@ unitTests = testGroup "unitTests"
     "a" `compare` "b" @?= LT
   , testCase "a is naturally less than b" $
     "a" `ncompare` "b" @?= LT
-  , testCase "1 number parses to N 1" $
+  , testCase "can parse a number" $
     par number "1" @?= 1
-  , testCase "z parses to [T \"z\"]" $
-    parse "z" @?= [T "z"]
-  , testCase "2 parses to [N 2]" $
-    parse "2" @?= [N 2]
+  , testCase "can parse a non number" $
+    par nonNumber "abc" @?= "abc"
+  , testCase "can parse a mix" $
+    par parts "1abc" @?= [N 1, T "abc"]
   , testCase "z2 is naturally less than z11" $
     "z2" `ncompare` "z11" @?= LT
+  , testCase "blank is naturally less than z11" $
+    "" `ncompare` "z11" @?= LT
+  , testCase "natural sorting works" $
+    sortBy ncompare ["2 ft 7 in", "1 ft 5 in", "10 ft 2 in", "2 ft 11 in", "7 ft 6 in"] @?= ["1 ft 5 in", "2 ft 7 in", "2 ft 11 in", "7 ft 6 in", "10 ft 2 in"]
   ]
