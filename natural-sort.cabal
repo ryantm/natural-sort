@@ -17,25 +17,32 @@ cabal-version:  >= 1.10
 extra-source-files:
     README.md
 
-executable natural-sort
-  main-is: Main.hs
+library
   hs-source-dirs:
       src
   build-depends:
       base >= 4.7 && < 5
-    , QuickCheck
-    , tasty
+    , text
+    , parsers
+    , parsec
+  exposed-modules:
+      NaturalSort
   default-language: Haskell2010
 
 test-suite test
   type: exitcode-stdio-1.0
-  main-is: Main.hs
+  main-is: Test.hs
   hs-source-dirs:
       test
+      src
   build-depends:
       base >= 4.7 && < 5
+    , text
+    , parsers
+    , parsec
     , QuickCheck
     , tasty
+    , tasty-hunit
   other-modules:
-      Test
+      NaturalSort
   default-language: Haskell2010

@@ -13,15 +13,20 @@ extra-source-files:
 
 dependencies:
   - base >= 4.7 && < 5
-  - QuickCheck
-  - tasty
+  - text
+  - parsers
+  - parsec
 
-executables:
-  natural-sort:
-    source-dirs:      src
-    main:             Main.hs
+library:
+  source-dirs:      src
 
 tests:
   test:
-    source-dirs:      test
-    main:             Main.hs
+    main: Test.hs
+    source-dirs:
+      - test
+      - src
+    dependencies:
+      - QuickCheck
+      - tasty
+      - tasty-hunit
